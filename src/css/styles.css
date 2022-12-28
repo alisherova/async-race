@@ -1,0 +1,14 @@
+@font-face {
+    font-family: 'race-font';
+    src: url(/fonts/americorps.ttf);
+}
+
+.startupHeading{
+    font-family: 'race-font';
+    font-size: 50px;
+}
+
+body{
+    background-color: rgba(0, 0, 0, 0.799) !important;
+    color: white !important;
+}
