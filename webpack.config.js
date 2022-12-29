@@ -4,8 +4,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
   mode: "development",
   entry: {
-    bundle: path.resolve(__dirname, "src/main.js"),
-    // bundle:path.resolve(__dirname, 'src/test2.js'),
+    bundle: path.resolve(__dirname, "src/UI.js"),
+    app: path.resolve(__dirname, "src/main.js"),
   },
   output: {
     path: path.resolve(__dirname, "public"),
@@ -16,16 +16,7 @@ module.exports = {
       title: "async-race",
       template: path.resolve(__dirname, "./src/template.html"),
       filename: "index.html",
-    }),
-    new HtmlWebpackPlugin({
-      title: "async-race",
-      template: path.resolve(__dirname, "./src/templateGarage.html"),
-      filename: "garage.html",
-    }),
-    new HtmlWebpackPlugin({
-      title: "async-race",
-      template: path.resolve(__dirname, "./src/templateWinners.html"),
-      filename: "winners.html",
+      chunks: ['bundle', 'app']
     }),
   ],
   module: {
@@ -33,6 +24,10 @@ module.exports = {
       {
         test: /\.css$/i,
         use: ["style-loader", "css-loader"],
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
       },
     ],
   },

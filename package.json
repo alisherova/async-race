@@ -22,8 +22,8 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.6",
-    "bootstrap": "^5.2.3",
     "concurrently": "^7.6.0",
-    "eslint": "^8.30.0"
+    "eslint": "^8.30.0",
+    "eslint-config-airbnb": "^19.0.4"
   }
 }

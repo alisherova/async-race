@@ -1,12 +1,10 @@
-import startPage from './startPage.js';
-import {handleLocation} from './route.js';
 import './css/styles.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
- 
-startPage()
-handleLocation()
- 
+// const heading = document.createElement('h1')
+// heading.textContent = 'Interesting!'
 
-fetch('http://127.0.0.1:3000/garage')
-    .then(res => res.json())
-    .then(data => console.log(data))
+// // Append heading node to the DOM
+// const app = document.querySelector('#root')
+// app.append(heading)
+console.log('hi');
+console.log('hi2');
