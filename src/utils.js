@@ -1,6 +1,6 @@
 export const renderCarImage = (color) => {
   return `
-  <svg fill='crimson' class="car__racer" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="150" height="92" viewBox="0 0 208 92" xml:space="preserve">
+  <svg class="car__racer" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="150" height="92" viewBox="0 0 208 92" xml:space="preserve">
   <desc>Created with Fabric.js 4.6.0</desc>
   <defs>
   </defs>

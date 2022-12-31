@@ -3,8 +3,10 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: "development",
-  entry: {
-    bundle: path.resolve(__dirname, "src/ui.js"),
+  experiments: {
+    topLevelAwait: true
+  },
+  entry: { 
     app: path.resolve(__dirname, "src/main.js"),
   },
   output: {
@@ -16,7 +18,7 @@ module.exports = {
       title: "async-race",
       template: path.resolve(__dirname, "./src/template.html"),
       filename: "index.html",
-      chunks: ['bundle', 'app']
+      chunks: ['app']
     }),
   ],
   module: {

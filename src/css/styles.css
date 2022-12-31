@@ -725,11 +725,11 @@ body {
   color: #ffffff;
 }
 
-.hidden .garage {
+.hidden{
   display: none;
 }
 
-#root{
+body{
     padding: 0 30px;
 }
 
