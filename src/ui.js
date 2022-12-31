@@ -1,3 +1,10 @@
+import {renderCarImage, renderRandomColor} from './utils'
+import { getCars, getCar, createCar, deleteCar, updateCar, startEngine, stopEngine, drive, getWinners, getWinner, createWinner, deleteWinner, updateWinner} from './api';
+
+
+console.log(renderRandomColor());
+
+// write header for both pages 
 let header = document.createElement("div");
 let pagesDiv = document.createElement("div");
 let garagePageBtn = document.createElement("button");
@@ -13,9 +20,7 @@ pagesDiv.append(garagePageBtn, winnersPageBtn);
 header.append(pagesDiv, title);
 header.classList.add("header__wrapper");
 let root = document.createElement("div");
-root.setAttribute("id", "root");
-import car from "../assets/car3.svg";
-
+root.setAttribute("id", "root"); 
 let carQuantity = null;
 
 const writeCarContent = (carName) => {
@@ -35,7 +40,7 @@ const writeCarContent = (carName) => {
          </div>
         </div>
         <div class="car__container">
-        <img src=${car} alt="car">
+        ${renderCarImage(renderRandomColor())}
     </div>
       </div>`;
   };
@@ -72,7 +77,6 @@ const writeInputs = (input1, input2) => {
     </div>
   </div>`;
 };
-
 
 
 const writeHeader = () => {
