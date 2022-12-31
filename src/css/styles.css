@@ -662,8 +662,8 @@ body {
   text-shadow: 0 -40px 100px, 0 0 0, 0 0 1em #bfe2ff, 0 0 0.5em #bfe2ff,
     0 0 0.1em #bfe2ff;
 }
-.logo__title span {
-  animation: logo linear infinite 2s;
+.logo__title span { 
+  animation: logo linear infinite 2s; 
 }
 @media (max-width: 870px) {
   .logo__title {
@@ -802,7 +802,6 @@ body{
 }
 
 .winners {
-  display: none;
   color: #ffffff;
   font-family: "Press Start 2P", "Arial", sans-serif;
   font-style: normal;

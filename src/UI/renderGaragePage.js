@@ -54,7 +54,8 @@ export const renderGaragePage = () => {
       <button class="button button-additional option__button update-car__button" disabled="">${input2}</button>
     </div>
   </div>`;
-  };
+};
+
 
   root.innerHTML += writeInputs("CREATE", "UPDATE");
   root.innerHTML += writeGarageHeader();
@@ -73,7 +74,7 @@ export const renderGaragePage = () => {
               <button class="button button-basic buttonEnd"></button>
             </div>
             <span class="text">${carName}</span>
-         </div>
+          </div>
         </div>
         <div class="car__container">
         ${renderCarImage(color)}
@@ -98,4 +99,22 @@ export const renderGaragePage = () => {
 
   root.innerHTML += writePagination();
   document.querySelector("body").append(root);
+
+  document.querySelector('.create-car__button').addEventListener('click',() => {
+    let newCar = {
+      name: document.querySelector('.create-car__name').value,
+      color: document.querySelector('.create-car__color').value
+    }
+
+    createCar(newCar)
+    console.log(createCar(newCar));
+
+    // writeCarContent(newCar.name, newCar.color)
+    getCars()
+    // console.log( document.querySelector('.create-car__name').value);
+    // console.log(document.querySelector('.create-car__color').value);
+    // console.log('hi');
+
+  })
 };
+

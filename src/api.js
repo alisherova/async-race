@@ -40,7 +40,13 @@ export const drive = async (id) => (await fetch(`${engine}?id=${id}&status=drive
     method: 'PATCH',
 })).json()
 
-export const getWinners = async (page, limit, sort = '', order = '') => (await fetch(`${winners}&_page=${page}&_limit=${limit}&_sort=${sort}&_order=${order}`))
+export const getWinners = async (page, limit = 10, sort = '', order = '') => {
+    const response = await fetch(`${winners}&_page=${page}&_limit=${limit}&_sort=${sort}&_order=${order}`)
+    const items = await response.json()
+    return {
+        count: response.headers.get('X-Total-Count')
+    }
+} 
 
 export const getWinner = async (id) => (await fetch(`${engine}/${id}`)).json()
 
