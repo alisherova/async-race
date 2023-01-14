@@ -1,5 +1,4 @@
-export const renderCarImage = (color, width = 140) => {
-  return `<svg class="car__racer" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width=${width} height="92" viewBox="0 0 208 92" xml:space="preserve">
+export const renderCarImage = (color, id, width = 140) => `<svg id=${id} class="car__racer" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width=${width} height="92" viewBox="0 0 208 92" xml:space="preserve">
         <desc>Created with Fabric.js 4.6.0</desc>
         <defs>
         </defs>
@@ -40,9 +39,28 @@ export const renderCarImage = (color, width = 140) => {
         </g>
         </g>
         </g>
-        </svg>`;
-};
+        </svg>`
 
-export const renderRandomColor = () => {
-  return "#" + Math.floor(Math.random() * 16777215).toString(16);
-};
+export const getRandomColor = () => `#${Math.floor(Math.random() * 16777215).toString(16)}`
+
+const models = ['Tesla', 'Mercedes', 'BMW', 'Toyoto', 'Zhiguli', 'Moskvich', 'Opel', 'Aston MArtin', 'Porshe']
+
+const names = ['Model S', 'CLK', '7', 'Combi', '9', 'Corsa', 'DB9', 'Cayene']
+
+const getRandomName = () => {
+  const model = models[Math.floor(Math.random() * models.length)]
+  const name = names[Math.floor(Math.random() * names.length)]
+  return `${model} ${name}`
+}
+
+// eslint-disable-next-line max-len
+export const generateRandomCars = (count = 100) => new Array(count).fill(1).map(() => ({ name: getRandomName(), color: getRandomColor() }))
+
+// eslint-disable-next-line no-return-assign
+export const showPopUp = (wins = 1, name, time) => {
+  document.querySelector('.popup').style.display = 'flex'
+  document.querySelector('.popup').innerHTML = (`
+    <img class="popup__image" width="150" src="./5fd9d5d8ad767dbe5e7a.png" alt="trophy image">
+    <span class="popup__text">Winner is ${name}, wins ${wins} in ${time}</span> 
+    `)
+}

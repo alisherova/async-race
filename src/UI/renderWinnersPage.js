@@ -1,31 +1,17 @@
-import { renderCarImage, renderRandomColor } from "../utils";
-import {
-  getCars,
-  getCar,
-  createCar,
-  deleteCar,
-  updateCar,
-  startEngine,
-  stopEngine,
-  drive,
-  getWinners,
-  getWinner,
-  createWinner,
-  deleteWinner,
-  updateWinner,
-} from "../api";
+import {getWinners} from '../api'
+import { renderCarImage } from '../utils'
 
-// const {count: winnersCount} = await getWinners(1,10)
-// const { items: winners, count: winnersAmount } = await getWinners(1);
+let winnersNumber = 1
+let winnersList = []
 
-export const renderWinnersPage = () => {
-  let root = document.createElement("div");
-  root.setAttribute("id", "rootWinners");
-  root.classList.add("hidden");
+export async function renderWinnersPage() { 
+  const root = document.createElement('section')
+  root.setAttribute('id', 'rootWinners')
+  root.classList.add('hidden')
   root.innerHTML = `
   <div class="winners">
     <div class="winners__wrapper wrapper">
-      <h2 class="heading">WINNERS (<span class="winners__carsTotal">1</span>)</h2>
+      <h2 class="heading">WINNERS (<span class="winners__carsTotal">${winnersNumber}</span>)</h2>
       <table class="winners__table table">
         <thead>
           <tr>
@@ -34,44 +20,60 @@ export const renderWinnersPage = () => {
             <th class="table__name">Name</th>
             <th class="table__wins sort" data-sort="wins">
               <div class="table__wins">
-                <span>Wins</span>
+                <span onclick="sortByWins()">Wins</span>
                 <span class="table__wins_order"></span>
               </div>
             </th>
             <th class="table__time sort" data-sort="time">
               <div class="table__time">
-                <span>Best time (sec)</span>
+                <span id="winnersTimeSpan" onclick="sortByTime()">Best time (sec)</span>
                 <span class="table__time_order"></span>
               </div>
             </th>
           </tr>
         </thead>
-        <tbody class="table__body">
-  
+        <tbody class="table__body"> 
     </tbody>
       </table>
-      <div class="winners__pagination pagination">
-        <button class="button button-basic button-prev" disabled="">Prev</button>
-        <span class="pagination__page">1</span>
-        <button class="button button-basic button-next" disabled="">Next</button>
-      </div>
     </div>
   </div>
-  `;
-  document.querySelector("body").append(root);
+  `
+  document.querySelector('body').append(root)
+}
 
-  // winners.map((winner, num = 0) => {
-  //   document.querySelector(".table__body").innerHTML += `
-  //   <tr>
-  //   <td>${num++}</td>
-  //   <td>${renderCarImage('crimson', 90)}</td>
-  //   <td>${winner.name}</td>
-  //   <td>${winner.wins}</td>
-  //   <td>${winner.time}</td>
-  // </tr>`;
-  // });
-};
+const renderWinners = (winnersList) => {
+  winnersList.map((winner, num = 0) => {
+    document.querySelector('.table__body').innerHTML += `
+    <tr>
+      <td>${num++}</td>
+      <td>${renderCarImage(winner.car.color, 90)}</td>
+      <td>${winner.car.name}</td>
+      <td>${winner.wins}</td>
+      <td>${winner.time}</td>
+  </tr>`
+  })
+}
 
-export const renderWinnersContent = () => {
-  return ``;
-};
+let winnersUrl = ''
+
+ window.showWinners = function(sort, order){
+  document.querySelector('.table__body').innerHTML = ""
+  getWinners(sort, order).then((res) => { 
+    winnersUrl = res.url;
+    winnersList = res.items
+    winnersNumber = res.count
+    renderWinners(winnersList)
+  }) 
+} 
+
+window.sortByTime = function(){ 
+  const searchParams = new URLSearchParams(winnersUrl); 
+  (searchParams.get('_order') === "DESC") ? showWinners('time', 'ASC') : showWinners('time', 'DESC')
+}
+
+window.sortByWins = function(){ 
+  const searchParams = new URLSearchParams(winnersUrl); 
+  (searchParams.get('_order') === "DESC") ? showWinners('wins', 'ASC') : showWinners('wins', 'DESC')
+}
+
+export default showWinners;

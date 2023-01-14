@@ -1,11 +1,16 @@
 {
   "name": "async-race-api",
   "version": "1.0.0",
+  "repository": {
+    "url": "git+https://github.com/alisherova/async-race.git"
+  },
   "description": "Fun with promises",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "build": "webpack",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "watch": "webpack serve",
     "dev": "concurrently \"npm:build\" \"npm:start\" \"npm:watch\""
   },
@@ -13,6 +18,8 @@
   "license": "MIT",
   "devDependencies": {
     "css-loader": "^6.7.3",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "gh-pages": "^4.0.0",
     "html-webpack-plugin": "^5.5.0",
     "json-server": "^0.16.3",
     "style-loader": "^3.3.1",
@@ -21,9 +28,9 @@
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
-    "@popperjs/core": "^2.11.6",
     "concurrently": "^7.6.0",
     "eslint": "^8.30.0",
-    "eslint-config-airbnb": "^19.0.4"
+    "eslint-config-airbnb": "^19.0.4",
+    "webpack-merge": "^5.8.0"
   }
 }
